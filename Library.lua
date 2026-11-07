@@ -2304,6 +2304,15 @@ end
             BackgroundColor3 = 'MainColor';
             BorderColor3 = 'OutlineColor';
         });
+        local function syncMaxSize()
+        local w = SliderInner.AbsoluteSize.X
+            if w > 0 and Slider.MaxSize ~= w then
+                Slider.MaxSize = w
+                Slider:Display()
+            end
+        end
+        SliderInner:GetPropertyChangedSignal("AbsoluteSize"):Connect(syncMaxSize)
+        task.defer(syncMaxSize)
         local Fill = Library:Create('Frame', {
             BackgroundColor3 = Library.AccentColor;
             BorderColor3 = Library.AccentColorDark;
