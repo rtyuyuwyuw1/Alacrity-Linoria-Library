@@ -3003,41 +3003,13 @@ do
     Library:AddToRegistry(WatermarkInner, {
         BorderColor3 = 'AccentColor';
     });
-    local _tn = Library.NotifyConfig.Transparency or 0
-
-local InnerFrame = Library:Create('Frame', {
-    BackgroundColor3 = Color3.new(1, 1, 1);
-    BorderSizePixel = 0;
-    BackgroundTransparency = _tn;
-    Position = UDim2.new(0, innerPosX, 0, innerPosY);
-    Size     = UDim2.new(1, innerSizeW, 1, innerSizeH);
-    ZIndex = 102;
-    Parent = NotifyInner;
-});
-local Gradient = Library:Create('UIGradient', {
-    Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Library:GetDarkerColor(Library.MainColor)),
-        ColorSequenceKeypoint.new(1, Library.MainColor),
-    });
-    Transparency = NumberSequence.new(_tn);
-    Rotation = -90;
-    Parent = InnerFrame;
-});
-    Library:AddToRegistry(Gradient, {
-        Color = function()
-            return ColorSequence.new({
-                ColorSequenceKeypoint.new(0, Library:GetDarkerColor(Library.MainColor)),
-                ColorSequenceKeypoint.new(1, Library.MainColor),
-            });
-        end
-    });
     local WatermarkLabel = Library:CreateLabel({
         Position = UDim2.new(0, 5, 0, 0);
         Size = UDim2.new(1, -4, 1, 0);
         TextSize = Library.FontSize;
         TextXAlignment = Enum.TextXAlignment.Left;
         ZIndex = 203;
-        Parent = InnerFrame;
+        Parent = WatermarkInner;
     });
     Library.Watermark = WatermarkOuter;
     Library.WatermarkText = WatermarkLabel;
